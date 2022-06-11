@@ -1,0 +1,47 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/",
+  "scripts": {
+    "chat": "NODE_ENV=development PORT=3000 nodemon  node --max-old-space-size=8096 src/",
+    "chatdev": "NODE_ENV=development PORT=5000 nodemon  node --max-old-space-size=8096 src/",
+    "chat2": "NODE_ENV=production PORT=6001 node --max-old-space-size=8096 src/",
+    "test-server": "NODE_ENV=testing PORT=4000 nodemon  node --max-old-space-size=8096 src/",
+    "test": "NODE_ENV=testing PORT=4000 mocha --timeout 10000  node --max-old-space-size=8096 'test/index.test.js'",
+    "inspect": "NODE_ENV=development PORT=5000 nodemon --inspect-brk src/",
+    "test-watch": "nodemon --exec 'npm run test'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgesinghkataria/chatApp.git"
+  },
+  "author": "sehej, shivam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edgesinghkataria/chatApp/issues"
+  },
+  "homepage": "https://github.com/edgesinghkataria/chatApp#readme",
+  "dependencies": {
+    "aws-sdk": "^2.525.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.0",
+    "morgan": "^1.9.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^1.19.1",
+    "passport": "^0.4.0",
+    "request": "^2.88.0",
+    "socket.io": "^2.2.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "expect": "^24.8.0",
+    "mocha": "^6.1.4",
+    "sinon": "^7.4.2",
+    "socket.io-client": "^2.3.0"
+  }
+}
