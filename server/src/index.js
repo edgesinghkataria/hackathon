@@ -1,6 +1,6 @@
-'use strict'
-require('./setup')
-.then(({ PORT, server }) => {
+
+(async () => {
+  const { PORT, server } = await require('./setup')();
 
   server.listen(PORT)
   server.on('error', serverError);
@@ -14,5 +14,4 @@ require('./setup')
   function serverOpen() {
     console.log('listening @ port', PORT);
   }
-  
-});
+})();

@@ -5,39 +5,27 @@
  * 3. socket
  * 4. start server
  */
-module.exports = new Promise((resolve, reject) => {
-  'use strict';
+module.exports = async function () {
+  try {
+    const mongoose = require("mongoose");
 
-  const mongoose = require('mongoose');
+    const { PORT, createMongoURL } = require("./config");
 
-  const { PORT, createMongoURL } = require('./config');
+    console.log("setting up mongoDB...");
+    await mongoose.createConnection(createMongoURL(), {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+    });
+    console.log("mongoDB connected!");
 
-  console.log('setting up mongoDB...');
-  mongoose.connect(createMongoURL(), { useNewUrlParser: true, useFindAndModify: false }, (err) => {
-    if(err)
-      mongooseError();
-    else
-      mongooseOpen();
-  });
-
-  const setupSocketIO = () => {
-    const { server } = require('./config/http-server'); 
-    require('./socket');
-    require('./config/app');
-    resolve({
+    const { server } = require("./config/http-server");
+    require("./socket");
+    require("./config/app");
+    return {
       server,
-      PORT
-    })
+      PORT,
+    };
+  } catch (error) {
+    console.error(error);
   }
-
-  function mongooseError(err) {
-    reject()
-    console.log(`error connecting to mongoDB, exiting node process with code 1`, err)
-    process.exit(1);
-  }
-
-  function mongooseOpen() {
-    setupSocketIO();
-  }
-
-})
+};

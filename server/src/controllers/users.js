@@ -19,6 +19,7 @@ async function createAUser (req, res) {
   try {
     const data = req.body,
       name = data.name,
+      mobileNumber = data.mobileNumber,
       socket = data.socketID,
       mentorKey = data.mentorKey
 
@@ -34,6 +35,7 @@ async function createAUser (req, res) {
 
     const responseData = await create_user(
       name,
+      mobileNumber,
       socketID,
       mentorKey,
     );

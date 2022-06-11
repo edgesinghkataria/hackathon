@@ -7,7 +7,7 @@ const winston = require('winston');
 const api = express.Router();
 
 api.use('/_health', (req, res) => {
-  res.status(200).send({status: 'active'});
+  res.status(200).send({status: 'ok'});
 })
 
 if(process.env.NODE_ENV === 'production')

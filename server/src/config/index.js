@@ -4,10 +4,11 @@ const createMongoURL = () => MONGO_URL;
 const MAX_BUCKET_SIZE = 30;
 
 if (process.env.NODE_ENV === 'development') {
-  DB_NAME = process.env.DB_NAME || 'gmkchatdev';
-  MONGO_URL = `mongodb://localhost:27017/gmkchatdev`
+  DB_NAME = process.env.DB_NAME || 'chatApp';
+  MONGO_URL = `mongodb://localhost:27017/chatApp`
 }
 
+console.log(MONGO_URL);
 module.exports = {
   PORT: process.env.PORT,
   createMongoURL,

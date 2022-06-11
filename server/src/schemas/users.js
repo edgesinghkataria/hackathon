@@ -14,6 +14,7 @@ const ChatListSchema = new Schema({
 });
 const UserSchema = new Schema({
   _id: { type: ObjectId, ref: "users", required: true },
+  mobileNumber: { type: Number, ref: "users", required: true, },
   name: String,
   avatar: { type: String, default: "default.jpg" },
   lastSeen: Date,

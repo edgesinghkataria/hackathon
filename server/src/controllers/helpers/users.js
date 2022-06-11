@@ -23,9 +23,10 @@ const {
   generateResponse,
 } = require("../../helpers/api-response");
 
-const createUser = (name, socketID, mentorkey) => {
+const createUser = (name, mobileNumber, socketID, mentorkey) => {
   return UserModel.create({
     name,
+    mobileNumber,
     socketID,
     mentorkey,
   }).catch((e) => console.log(e));
@@ -54,8 +55,8 @@ const getUserByUsername = (username) => {
   return UserModel.findOne({ username }).catch((e) => console.log(e));
 };
 
-const getUserByPlayerID = (playerID) => {
-  return UserModel.findOne({ playerID }).catch((e) => console.log(e));
+const getUserByMobile = (mobileNumber) => {
+  return UserModel.findOne({ mobileNumber }).catch((e) => console.log(e));
 };
 
 const findUserChatWith = (cID, bucket, type) => {
@@ -632,10 +633,10 @@ const storeP2PChat = (
 };
 
 
-async function create_user(name, socketID, mentorkey) {
+async function create_user(name,mobileNumber, socketID, mentorkey) {
   try {
-    const playerData = await getUserByPlayerID(playerID);
-
+    const playerData = await getUserByMobile(mobileNumber);
+    console.log(playerData, ' data found ');
     /**
      * if user doesn't exist in DB
      */
@@ -643,7 +644,7 @@ async function create_user(name, socketID, mentorkey) {
       /**
        * creating a user entry in DB
        */
-      const userData = await createUser(name, socketID, mentorkey);
+      const userData = await createUser(name, mobileNumber, socketID, mentorkey);
 
       return {
         status: true,
@@ -1068,7 +1069,7 @@ module.exports = {
   getUserChats,
   getAUserWithPopulate,
   getUserByUsername,
-  getUserByPlayerID,
+  getUserByMobile,
   insertGroupInUser,
   insertP2pInUser,
   storeP2PChat,
