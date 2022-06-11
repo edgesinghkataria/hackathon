@@ -55,8 +55,8 @@ const getUserByUsername = (username) => {
   return UserModel.findOne({ username }).catch((e) => console.log(e));
 };
 
-const getUserByMobile = (mobileNumber) => {
-  return UserModel.findOne({ mobileNumber }).catch((e) => console.log(e));
+async function  getUserByMobile(mobileNumber) {
+  return UserModel.findOne({ mobileNumber });
 };
 
 const findUserChatWith = (cID, bucket, type) => {
@@ -658,6 +658,7 @@ async function create_user(name,mobileNumber, socketID, mentorkey) {
      * if user exist in DB
      */
     const userID = playerData._id;
+    const userChats = playerData.chats;
 
     updateUserSocket(userID, socketID);
     /**
@@ -665,7 +666,7 @@ async function create_user(name,mobileNumber, socketID, mentorkey) {
      */
     join_leave_rooms(socketID, userChats, "join");
 
-    return { status: true, desc: "user already exists!!", userID, unread };
+    return { status: true, desc: "user already exists!!", userID };
   } catch (error) {
     console.error(error);
     throw error;
