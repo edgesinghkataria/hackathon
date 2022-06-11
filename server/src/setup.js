@@ -12,9 +12,8 @@ module.exports = async function () {
     const { PORT, createMongoURL } = require("./config");
 
     console.log("setting up mongoDB...");
-    await mongoose.createConnection(createMongoURL(), {
+    await mongoose.connect(createMongoURL(), {
       useNewUrlParser: true,
-      useFindAndModify: false,
     });
     console.log("mongoDB connected!");
 

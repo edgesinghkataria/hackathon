@@ -30,8 +30,8 @@ async function createAUser (req, res) {
     const socketID = io.sockets.connected[socket];
 
     //checking if the socket is online
-    if (!socketID)
-      throw new Errors.InvalidSocket();
+    // if (!socketID)
+    //   throw new Errors.InvalidSocket();
 
     const responseData = await create_user(
       name,

@@ -3,9 +3,9 @@ let MONGO_URL = `mongodb+srv://nodeapi_user:1RjsPNe3uSmQYbmz@gamingmonk-chat-org
 const createMongoURL = () => MONGO_URL;
 const MAX_BUCKET_SIZE = 30;
 
-if (process.env.NODE_ENV === 'development') {
+if (true || process.env.NODE_ENV === 'development') {
   DB_NAME = process.env.DB_NAME || 'chatApp';
-  MONGO_URL = `mongodb://localhost:27017/chatApp`
+  MONGO_URL = `mongodb://localhost/chatApp`
 }
 
 console.log(MONGO_URL);

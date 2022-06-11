@@ -24,12 +24,12 @@ const {
 } = require("../../helpers/api-response");
 
 const createUser = (name, mobileNumber, socketID, mentorkey) => {
-  return UserModel.create({
+  return new UserModel({
     name,
     mobileNumber,
     socketID,
     mentorkey,
-  }).catch((e) => console.log(e));
+  }).save()
 };
 
 async function updateUserSocket(userId, socketId) {
