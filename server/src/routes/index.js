@@ -1,6 +1,7 @@
 'use strict'
 const express = require('express');
 const user = require('./user')
+const ticket = require('./ticket')
 const varifyJWT = require('../helpers/jwt_helper/')
 const winston = require('winston');
 
@@ -42,5 +43,6 @@ if(process.env.NODE_ENV === 'production')
   })
 
 api.use('/user', user);
+api.use('/ticket', ticket);
 
 module.exports = api
