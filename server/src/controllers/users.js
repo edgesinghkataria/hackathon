@@ -81,7 +81,7 @@ async function createChat(req, res){
   try {
     const data = req.body,
     from = req.params.ID,
-    to = data.userID;
+    to = data.to;
 
     if (
       !areParametersValid(from, to, String) ||

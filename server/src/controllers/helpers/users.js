@@ -568,16 +568,9 @@ const createP2PChat = function (requestor, user, _id) {
     });
 };
 
-const create_chat = (
-  requester,
-  chatWith,
-) => {
-   return create_chat_helper(requester, chatWith);
-};
-
-async function create_chat_helper (requester, chatWith) {
-  const result = await findP2pChat(requester, chatWith);
-
+async function create_chat (requester, chatWith) {
+  let result = await findP2pChat(requester, chatWith);
+  console.log(result, ' result value ');
     if (result.length > 1) throw new Error("DB got more p2ps");
 
       result = result[0];
@@ -601,7 +594,7 @@ async function create_chat_helper (requester, chatWith) {
         let user = newP2PArr[3]; // target user to chat with
         channelID = newP2PInfo._id; // P2P channel ID got from mongoDB
 
-        socket && join_leave_p2ps(socket, [{ _id: channelID }], "join");
+        // socket && join_leave_p2ps(socket, [{ _id: channelID }], "join");
     
         return {
           statusCode: 200,
@@ -614,6 +607,10 @@ async function create_chat_helper (requester, chatWith) {
           },
         };
 };
+
+async function findP2pChat (requestor, user) {
+  return P2PModel.find({ members: { $all: [user, requestor] } });
+}
 
 const storeP2PChat = (
   { channelID, from, text, time, type, platform, image, invite, post },
